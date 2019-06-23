@@ -1,0 +1,169 @@
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Autocomplete - Scrollable results</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+    .ui-autocomplete {
+        max-height: 100px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+      }
+      /* IE 6 doesn't support max-height
+       * we use height instead, but this forces the menu to always be this tall
+       */
+      * html .ui-autocomplete {
+        height: 100px;
+      }
+  </style>
+</head>
+    <div class="container" style="margin-top:10px; text-align:left; font-family:Jeju Gothic, sans-serif;">
+        <div class="container">
+            <div class="row">
+                <div class="intro-text">
+                <div class="container">
+                	<div class="row">
+                		<h2 style="font-family:Jeju Gothic, sans-serif; text-align:center; color:white">축제 검색</h2>
+                		<form action="/result" method="POST">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+                                    <input id="tags" type="text" name="to_find" class="search-query form-control" style="font-family:Nanum Gothic, sans-serif;" placeholder="가고싶은 대학, 보고싶은 연예인을 입력하세요" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="submit">
+                                                <span class=" glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- 대학이름으로 검색시-->
+    <% if(@univ.presence)%>
+    <% @univ.group(:univ).each do |n| %>
+        <div class="white_box jumbotron col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12" style="">
+            
+            <!-- logo & name -->
+            <%
+              shape = "round"
+              none_univ = ["남서울대","인천대","추계예술대", "경기대(서울)", "서경대","신한대"]
+              t_shape_univ = [ "동국대","한국기술교대"]
+              if(t_shape_univ.include?n.univ)
+                  shape = "T"
+              end
+              if(none_univ.include?n.univ)
+                  shape = "none"
+              end
+            %>
+            <div class="container col-md-6">
+                <h1 style="color:black; font-size:54px" align="center" > <%= n.univ %> </h1>
+                <h1 align="center"> <img src="/assets/<%=n.univ%>.jpg" class ="logo_shape_<%= shape%>"> </h1>
+            </div>
+              
+            <!-- list -->
+              
+            <div class="container col-md-6">
+                <table class="table table-fixed_Right" style="font-size:20px">
+                     <tbody>
+                        <% @univ.where("univ = ?", n.univ).group(:date).each do |u| %>
+                            <tr> <td class="col-xs-12"> <%= u.date %>일 
+                                <% @univ.where("univ = ? AND date = ?", n.univ, u.date).order(:lineup).each do |d| %>
+                                <% @count = @univ.where("univ = ? AND date = ?", n.univ, u.date).each.count %>
+                                    <%= d.lineup %>
+                                    <% if( @counts < @count) %>
+                                    <%= @shim%>
+                                    <% @counts = @counts+1 %>
+                                    <%end%>
+                                <%end%>
+                                <% @counts = 1 %>
+                            </td> </tr> 
+                        <%end%>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <%end%>
+        
+    <%elsif(@lineup.presence)%>
+    </div>
+    
+    <div class="container" style="margin-top:10px; text-align:left; font-family:Jeju Gothic, sans-serif;">
+        <!-- 가수이름으로 검색시-->
+        <% @lineup.group(:lineup).each do |n| %>
+        <div class="white_box jumbotron col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12" style="">
+              
+            <!-- name -->
+            <div class="container col-md-6" style="margin-top:50px">
+                <h1 style="color:black; font-size:54px" align="center" > <%= n.lineup %> </h1>
+            </div>
+              
+            <!-- list -->
+              
+            <div class="container col-md-6">
+                <table class="table table-fixed_Right" style="font-size:20px">
+                     <tbody>
+                        <% @lineup.where("lineup = ?", n.lineup).order(:date).each do |u| %>
+                            <tr> <td class="col-xs-12"> <%= u.date %>일 <%= u.univ %> </td> </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <%end%>
+        
+    <!-- 예외 처리 -->
+    
+    <%else%>
+        <div class="white_box jumbotron col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12" style="">
+            <div class="container" style="">
+                <h1 style="color:black; font-size:32px" align="center" > 결과값이 없습니다. </h1>
+                <h1 style="color:black; font-size:24px" align="center" > 제보 : 010_9033@naver.com </h1>
+            </div>
+        </div>
+    <%end%>
+    </div>
+</div>
+        
+<script>
+      $(function() {
+        var availableTags = ["고려대","대구가톨릭대","대전대","선문대","영남대", "영남대", "한국해양대", "한세대","경북대","동국대",
+          "부경대","부산대","상명대","연세대","추계예술대","홍익대","신한대","명지대","배제대","한국과학기술원",
+          "홍익대","인천대","경상대","이화여대","대구한의대","가톨릭대","강릉원주대","경기대","계명대","국민대",
+          "금오공과대","남서울대","동양대","서강대","서울여대","연세대","인제대","전북대","제주대",
+          "중앙대","추계예술대","한국기술교대","한동대","한서대","단국대","한양대","아주대","서경대","덕성여대",
+          "동의대","청주대","평택대","건국대","인하대","성균관대","경성대","상명대","서울시립대","원광대","한남대",
+          '블랙퀸','DJ.S-PSYCHO','포스트맨','나비','달샤벳','전우람','양동근','먼데이키즈','김보경','베티엘',
+          '그레이스','Loxx Punkman','DJ 바가지','고고보이즈','랄라스윗','솔루션스','어쿠스틱콜라보',
+          '데이브레이크','몽니','DJ CONAN (DJ 코난)','DJ ALPHA (DJ 알파)','EXID','장범준',
+          '케빈오','천단비','10cm (십센치)','김신영','DJ KOO','BIZZY','타이거JK','바스코','휘성',
+          'IOI (아이오아이)','DJ 맥시마이트','박재범','장미여관','윤도현밴드 (YB)',
+          '키썸','예지','길구봉구','이정','손승연','에이핑크(apink)','고온','온앤온','에릭','씨스타','윤미래',
+          '타이거jk','자이언티','스텔라','클템','전용준','에픽하이','이엑스아이디(EXID)','딘','크라이베이비',
+          '자메즈','박보람','10센치(10cm)','옥상달빛','싸이(PSY)','키썸(kisum)','긱스(Geeks)',
+          '블루미','참깨와 솜사탕','매드크라운','딕펑스','다이나믹듀오','버즈','바이브(vibe)',
+          '더블비','러블리즈','울랄라세션','바스코(Vasco)','블랙넛','피에스타(FIESTAR)','SG워너비',
+          '십센치(10cm)','베이식(Basick)','놀자','송소희','소찬휘',
+          '윤수일','거미','지누션','백지영','쿨','김건모','비투비','백아연','포미닛','알리','스윗소로우',
+          '하동균','IOI','장기하와얼굴들','민경훈','여자친구','DJ Juncoco','DJ MAXIMITE','로꼬','에디킴',
+          '혁오','비와이(BewhY)','DJ BARYONYX','G-PARK','D`one X 300(V Jing)','GreenPlayer','MENAP-CREW',
+          'Groovin`187','토네이도','소리마을','지하가요제','에일리','홍대광','유니콘','마틸다',
+          '케이코닉','바이브','배드키즈','레이샤','매드클라운','오일밴드','크라잉넛','싸이',
+          '빈지노','윤하','장기하와 얼굴들','나인뮤지스','레인보우','어반자카파','레드벨벳','소심한오빠들',
+          '아놀드홍','에릭남','크러쉬','이디오테잎','신용재','사이먼디','그레이','홍진영',
+          '피타입','트와이스','씨크릿','홀릭','써니힐','산이','DJ DOC','인크레더블',
+          '한해','긱스','가비엔제이','벤','V.O.S','로맨틱펀치','더콰이엇','도끼','쿠마','기리보이','천재노창'
+          ,'밤비노','베이식','마마무','버벌진트','아이오아이'];
+        $( "#tags" ).autocomplete({
+          source: availableTags
+        });
+      });
+</script>       
+    

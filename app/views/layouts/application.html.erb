@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>대학 축제</title>
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+    
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+  <!-- Mobile + Unscalable -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" maximum-scale=1, user-scalable="no">
+  <meta name="description" content="">
+  <meta name="author" content="Like_Lion_Hanyang_Univ">
+
+  <!-- Custom Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  
+  <!-- Bootstrap CDN -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <!-- Jquery -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <!-- 검색 최적화 -->
+  <%
+    description = "다른 대학의 축제는 어딨는지 궁금하시다고요? 특정 가수가 방문하는 축제만 알아보고 싶나요? 여기서 모두 검색해보세요"
+    site_title = "대학 축제"
+    title_img_src = "/assets/image/title_img.jpg"
+  %>
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="description" content="<%= description %>">
+  <meta name="referrer" content="always"><meta name="description" content="<%= description %>">
+  
+  <!-- BEGIN OPENGRAPH -->
+  <link rel="canonical" href="http://www.univfestival.info/" /><meta property="og:type" content="website" /><meta property="og:site_name" content="<%= site_title %>" ><meta property="og:title" content="<%= site_title %>" ><meta property="og:description" content="<%= description %>" ><meta property="og:image" content="<%= title_img_src %>" >
+  <!-- END OPENGRAPH -->
+  
+  
+  
+  <!-- BEGIN TWITTERCARD -->
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="<%= site_title %>" ><meta name="twitter:description" content="<%= description %>" ><meta property="twitter:image" content="<%= title_img_src %>" >
+  <!-- END TWITTERCARD -->
+  
+  
+  
+  <!-- BEGIN STRUCTURED_DATA -->
+  <script type="application/ld+json">{"@context":"http://schema.org", "@type":"ItemList","itemListElement":[{"@type":"ListItem", "position":1,"item": {"@id":"/category","name":"Post List"}}]}</script>
+  <!-- END STRUCTURED_DATA -->
+
+</head>
+
+<body>
+  <div id="backgroundimg"></div>
+    <!-- Navigation -->
+  <nav class="navbar navbar-god" style="font-family:Jeju Gothic, sans-serif;">
+      <div class="container">
+        <div class="navbar-header" style="width:100%">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" style="font-size:20px">대학 축제</a>
+          <a class="navbar-brand" href="/contact" class="jebo" style="float:right">제보하기</a>
+        </div>
+
+      </div>
+    </nav>
+    
+
+<%= yield %>
+
+
+  <footer id="mobile-footer">
+    <div id="mobile-menu">
+      <div id="mobile-footer-container">
+        <div class="mobile-link">
+          <img src="/assets/likelion_logo.png" width="30px;">x<img width="30px;" src="/assets/한양대.jpg" style="vertical-align:middle" class="logo_shape_round">
+        </div>
+        <div class="mobile-link">
+          <a href="./result" class="text-center" style='font-family:Nanum Gothic; font-size:14px'>모든 축제 보기</a>
+        </div>
+        <div class="mobile-link">
+          <a href="./contact" class="text-center" style='font-family:Nanum Gothic; font-size:14px'>만든이들</a>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-footer-close">
+      
+      <!-- 
+      <button id="mobile-footer-btn">
+        <div class="mobile-btn-close">
+          <span></span>
+        </div>
+      </button>
+      -->
+      
+    </div>
+  </footer>
+  <!--
+  <script>(function($) {
+    // Store menu container
+    var mobileMenu = '#mobile-menu';
+    // Store Trigger
+    
+    var mobileBtn = '#mobile-footer-btn';
+
+    var rotation = '.mobile-btn-close';
+    
+    $(mobileBtn).on("click", function(e) {
+      e.stopPropagation();
+      if ($(mobileMenu).hasClass('mobile-menu-hide') || $(rotation).hasClass('is-rotating')) {
+        $(mobileMenu).removeClass("mobile-menu-hide").addClass("mobile-menu-show");
+        $(rotation).removeClass("is-rotating").addClass("is-rotating-back");
+      } else {
+        $(mobileMenu).removeClass("mobile-menu-show").addClass("mobile-menu-hide");
+        $(rotation).removeClass('is-rotating-back').addClass('is-rotating');
+      }
+    });
+  });
+})(jQuery);
+  </script>
+  -->
+</body>
+</html>

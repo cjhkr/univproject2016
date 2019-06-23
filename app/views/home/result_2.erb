@@ -1,0 +1,95 @@
+
+  <!-- Search Snippet :: 알아서 POST하세요 --> 
+    <header>
+        <div class="container" >
+            <div class="intro-text">
+                <div class="container">
+                	<div class="row">
+                		<h2 style="font-family:Jeju Gothic, sans-serif;">축제 검색</h2>
+                		<form action="/result" method="POST">
+                            <div id="custom-search-input">
+                                 <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+                                    <input type="text" name="to_find" class="search-query form-control" style="font-family:Nanum Gothic, sans-serif;" placeholder="'아이오아이', '한양대'를 검색하세요" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="submit">
+                                                <span class=" glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    <!-- 대학이름으로 검색시 -->
+    <% if(@univ.presence)%>
+    <% @univ.group(:univ).each do |n| %>
+    <div class="container" style="font-family:Jeju Gothic, sans-serif;">
+        <div class="jumbotron" style="background-color:white">
+                
+        <div class="logo col-md-2">
+            <h1 style="color:black" align="left"> <img src="https://s3.ap-northeast-2.amazonaws.com/classlion/logo/operator_true/hanyang.jpg"></h1>
+        </div>
+              
+        <!-- 학교 이름 -->
+        <div class="name col-md-6" style="margin-top:60px" >
+            <h1 style="color:black; font-size:54px" align="center" > <%= n.univ %> </h1> 
+        </div>
+              
+        <!-- 날짜 / 그날 라인업 -->
+          
+        <% @univ.where("univ = ?", n.univ).each do |u| %>
+            <div class="list col-md-4">
+                    <h2 style="color:black; font-size:24px" align="right"> <%= u.date %>일 <%= a.lineup %> </h2>
+            </div>
+            <%end%>
+              <div class="blank_1" style="margin-top:240px"> 
+              </div>
+              
+            </div>
+    	</div>
+    	<%end%>
+    	
+    	<!-- 이름으로 검색시 -->
+    	<% else %>
+    	 <% @lineup.each do |n| %>
+            <div class="container" style="font-family:Jeju Gothic, sans-serif;">
+                <div class="jumbotron" style="background-color:white">
+                      
+                    <div class="logo col-md-2">
+                        <h1 style="color:black" align="left"> <img src="https://s3.ap-northeast-2.amazonaws.com/classlion/logo/operator_true/hanyang.jpg"> </h1>
+                    </div>
+                      
+                    <div class="name col-md-6" style="margin-top:60px" >
+                        <h1 style="color:black; font-size:54px" align="center" > <%= n.univ %> </h1> 
+                    </div>
+                    
+                    <div class="container col-md-4">
+                        <table class="table table-fixed_Right" style="font-size:20px">
+                            <tbody>
+                                <tr> <td class="col-xs-12"> 05.15 연세대 </td> </tr>
+                                <tr> <td class="col-xs-12"> 05.16 세종대 </td> </tr>
+                                <tr> <td class="col-xs-12"> 05.17 건국대 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                                <tr> <td class="col-xs-12"> 걸스데이 </td> </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                  
+            	</div>
+            </div>
+            <%end%>
+        <%end%>
+    	

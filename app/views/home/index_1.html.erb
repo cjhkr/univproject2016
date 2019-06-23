@@ -1,0 +1,57 @@
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Autocomplete - Scrollable results</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+    .ui-autocomplete {
+        max-height: 100px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+      }
+      /* IE 6 doesn't support max-height
+       * we use height instead, but this forces  the menu to always be this tall
+       */
+      * html .ui-autocomplete {
+        height: 100px;
+      }
+  </style>
+</head>
+  <!-- Search Snippet --> 
+    <header>
+        <div class="container";>
+            <div class="intro-text">
+                <div class="container">
+                	<div class="row">
+                		<h2 style="font-family:Jeju Gothic, sans-serif;">축제 검색</h2>
+                		<form action="/result" method="POST">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+                                    <input type="text" name="to_find" id="tags" class="search-query form-control" style="font-family:Nanum Gothic, sans-serif;" placeholder="가고싶은 대학, 보고싶은 연예인을 입력하세요" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="submit">
+                                                <span class=" glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+</div>
+
+<script>
+      $(function() {
+        var availableTags = <%= (Project.group(:univ).map(&:univ) + 
+        Project.group(:lineup).map(&:lineup)).to_json.html_safe %>;
+        $( "#tags" ).autocomplete({
+          source: availableTags
+        });
+      });
+</script>   

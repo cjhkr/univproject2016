@@ -1,0 +1,296 @@
+.univ_title{color:black;font-size:54px;}
+.jebo{font-size:20px;}
+.white_box{
+  background-color:rgba(255,255,255,0.8)!important; margin-top:25px
+}
+.logo_shape_round{ border-radius: 50%}
+.logo_shape_T{
+  -webkit-clip-path: polygon(22% 0, 80% 0, 80% 61%, 100% 62%, 100% 100%, 0 100%, 0 62%, 24% 62%);
+  clip-path: polygon(22% 0, 80% 0, 80% 61%, 100% 62%, 100% 100%, 0 100%, 0 62%, 24% 62%);
+}
+.logo_shape_none, .logo_shape_round,.logo_shape_T {max-width:200px;}
+.makers_txt{color:black; font-size:24px; text-align: center}
+a .makers_txt {color:darkblue;}
+.contact_logo{margin-top:95px;}
+@media(max-width: 500px) {
+    .contact_logo{margin-top:auto;}
+    .univ_title{color:black;font-size:40px;}
+    .logo_shape_none, .logo_shape_round,.logo_shape_T {max-width:150px;}
+    .jebo{font-size:10px;float:right}
+    .container>.navbar-header {margin-left:initial!important;}
+    }
+
+/*footer start*/
+#mobile-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    @media(min-width: 768px) {
+        display: none;
+    }
+}
+#mobile-menu {
+    background: rgba(0,0,0,.2);
+}
+#mobile-footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.mobile-link {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+}
+.mobile-link a {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+}
+#mobile-footer-close {
+    position: relative;
+}
+#mobile-footer-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #959192;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    &:focus {
+        outline: 0;
+    }
+}
+.mobile-btn-close span,
+.mobile-btn-close span::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 18px;
+    top: calc(50% - 9px);
+    right: calc(50% + -2.5px);
+    background-color: #fff;
+    transform: rotate(-90deg);
+    transition: 0.3s ease-out;
+}
+.mobile-btn-close {
+    transition: 1s ease-out;
+    &::focus {
+        transition: 1s ease-out;
+    }
+}
+.mobile-btn-close {
+    span {
+        transform: rotate(45deg);
+        &::before {
+            content: '';
+            transform: rotate(-90deg);
+        }
+    }
+}
+.is-rotating {
+    transform: rotate(135deg);
+}
+.is-rotating-back {
+    transform: rotate(-90deg);
+}
+.mobile-menu-hide {
+    animation: hideFooter 10s forwards;
+}
+.mobile-menu-show {
+    animation: showFooter 1s forwards;
+}
+@keyframes hideFooter {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+}
+@keyframes showFooter {
+    0% {
+        transform: translateY(300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/*footer end*/
+      .name_VC_P
+        {
+          height : 300px;
+        }
+        
+        .name_VC_S
+        {
+          position: relative;
+        	top: 50%;
+    	    transform: 			translateY(-50%);
+        }
+        
+        /* Background Image CSS */
+
+html{
+	/* Workaround for some mobile browsers */
+	min-height:100%;
+}
+
+#backgroundimg{
+	/* This image will be displayed fullscreen */
+	background:url(/assets/background.jpg) no-repeat center center;
+
+	/* Ensure the html element always takes up the full height of the browser window */
+	width:100%;
+	height:100%;
+
+	/* The Magic */
+	background-size:cover;
+	
+	position:fixed;
+}
+
+/* Search Snippet */
+header {
+    text-align: center;
+    color: white;
+    /*top: 30%;*/
+    /*left: 30%;*/
+    
+    display: table;
+    width: 100%;
+    height: 230px;
+    padding: 150px 0;
+   
+
+}
+
+/* Table scroll */
+    
+    .table-fixed thead {
+      width: 97%;
+    }
+    .table-fixed tbody {
+      height: 180px;
+      overflow-y: auto;
+      width: 100%;
+    }
+    .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+      display: block;
+    }
+    .table-fixed tbody td, .table-fixed thead > tr> th {
+      float: left;
+      border-bottom-width: 0;
+    }
+    
+/* Table scroll Right */
+
+    .table-fixed_Right thead {
+      width: 97%;
+    }
+    .table-fixed_Right tbody {
+      overflow-y: auto;
+      width: 100%;
+    }
+    .table-fixed_Right thead, .table-fixed_Right tbody, .table-fixed_Right tr, .table-fixed_Right td, .table-fixed_Right th {
+      display: block;
+    }
+    .table-fixed_Right tbody td, .table-fixed_Right thead > tr> th {
+      float: left;
+      border-bottom-width: 0;
+    }
+
+/* Table scroll Right2 */
+
+    .table-fixed_Right2 thead {
+      width: 97%;
+    }
+    .table-fixed_Right2 tbody {
+      height: 240px;
+      overflow-y: auto;
+      width: 100%;
+    }
+    .table-fixed_Right2 thead, .table-fixed_Right2 tbody, .table-fixed_Right2 tr, .table-fixed_Right2 td, .table-fixed_Right2 th {
+      display: block;
+    }
+    .table-fixed_Right2 tbody td, .table-fixed_Right2 thead > tr> th {
+      float: left;
+      border-bottom-width: 0;
+    }
+    
+/* navbar */
+
+    .navbar-god
+    {
+        border: none;
+        border-radius: 0;
+        background-color: rgba(0,0,0,0.2);
+        border-color: rgba(0,0,0,0.2);
+    }
+    
+    .navbar-brand
+    {
+    	color : #ffffff;
+    }
+    
+
+/* font */
+
+/*
+ * Nanum Gothic (Korean) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 800;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.ttf) format('truetype');
+}
+ 
+ /*
+ * Jeju Gothic (Korean) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Jeju Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+}
